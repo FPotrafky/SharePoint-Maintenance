@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SharePointMaintenance"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid x:Name="Hello">
+       <TextBox Text="Hello" /> 
     </Grid>
 </Window>
