@@ -11,8 +11,6 @@ namespace SPMaintenance.DataAccess
 {
     class SharePointRepository : ISharePointRepository
     {
-        public object SPMWeb { get; private set; }
-
         public SPMSite getSite(string siteUrl)
         {
             ClientContext ctx = new ClientContext(siteUrl);
@@ -29,6 +27,29 @@ namespace SPMaintenance.DataAccess
             spmsite.Title = web.Title;
 
             return spmsite;
+        }
+        public List<SPMList> getLists(string siteUrl)
+        {
+            List<SPMList> spmlists = new List<SPMList>();
+
+            ClientContext ctx = new ClientContext(siteUrl);
+            ctx.Credentials = new NetworkCredential("administrator", "test", "PO7");
+
+            ListCollection lists = ctx.Web.Lists;
+            ctx.Load(lists);
+
+            ctx.ExecuteQuery();
+
+            foreach (Microsoft.SharePoint.Client.List list in lists)
+            {
+                SPMList spmlist = new SPMList();
+                spmlist.ID = list.Id;
+                spmlist.Title = list.Title;
+
+                spmlists.Add(spmlist);
+            }
+
+            return spmlists;
         }
     }
 }

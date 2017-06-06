@@ -8,7 +8,7 @@ namespace SPMaintenance.Model
 {
     class SPMList
     {
-        public Guid ID { get; }
+        public Guid ID { get; set; }
         public string Title { get; set; }
         public bool ShowInDisplayForm { get; set; }
         public bool ShowInNewForm { get; set; }

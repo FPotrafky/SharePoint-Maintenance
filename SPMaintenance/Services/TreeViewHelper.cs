@@ -13,42 +13,58 @@ namespace SPMaintenance.Services
 {
     class TreeViewHelper
     {
+        private SharePointRepository _repo = null;
+        public TreeViewHelper()
+        {
+            _repo = new SharePointRepository();
+        }
+
         public void addSiteToTreeView(TreeView inTreeView, string siteUrl)
         {
-            SharePointRepository SPRepo = new SharePointRepository();
-            SPMSite site = SPRepo.getSite(siteUrl);
+            SPMSite site = this._repo.getSite(siteUrl);
 
-
-            TreeViewItem treeViewItemSite = new TreeViewItem() { Header = site.Title };
-            treeViewItemSite.IsExpanded = true;
-            treeViewItemSite.Expanded += NewTreeViewItem_Expanded;
-            treeViewItemSite.Tag = new SPMNodeInfo() { NodeType = SPMNodeType.Site };
-
-            TreeViewItem treeViewItemLists = new TreeViewItem()
+            if (site != null)
             {
-                Header = "Lists",
-                Tag = new SPMNodeInfo()
-                {
-                    NodeType = SPMNodeType.Lists,
-                    Init = true
-                }
-            };
-            treeViewItemLists.Items.Add(new TreeViewItem() { Header = "dummy" });
-            treeViewItemSite.Items.Add(treeViewItemLists);
+                TreeViewItem treeViewItemSite = new TreeViewItem() { Header = site.Title };
+                treeViewItemSite.IsExpanded = true;
+                treeViewItemSite.Expanded += NewTreeViewItem_Expanded;
+                treeViewItemSite.Tag = new SPMNodeInfo() {
+                    NodeType = SPMNodeType.Site,
+                    ID = site.ID,
+                    SiteUrl = siteUrl
+                };
 
-            TreeViewItem treeViewItemProperties = new TreeViewItem()
+                TreeViewItem treeViewItemLists = new TreeViewItem()
+                {
+                    Header = "Lists",
+                    Tag = new SPMNodeInfo()
+                    {
+                        NodeType = SPMNodeType.Lists,
+                        Init = true
+                    }
+                };
+                treeViewItemLists.Items.Add(new TreeViewItem() { Header = "dummy" });
+                treeViewItemSite.Items.Add(treeViewItemLists);
+
+                TreeViewItem treeViewItemProperties = new TreeViewItem()
+                {
+                    Header = "Properties",
+                    Tag = new SPMNodeInfo()
+                    {
+                        NodeType = SPMNodeType.SiteProperties,
+                        Init = true
+                    }
+                };
+                treeViewItemProperties.Items.Add(new TreeViewItem() { Header = "dummy" });
+                treeViewItemSite.Items.Add(treeViewItemProperties);
+
+                inTreeView.Items.Add(treeViewItemSite);
+            }
+            else
             {
-                Header = "Properties",
-                Tag = new SPMNodeInfo()
-                {
-                    NodeType = SPMNodeType.SiteProperties,
-                    Init = true
-                }
-            };
-            treeViewItemProperties.Items.Add(new TreeViewItem() { Header = "dummy" });
-            treeViewItemSite.Items.Add(treeViewItemProperties);
 
-            inTreeView.Items.Add(treeViewItemSite);
+            }
+
         }
 
         private void NewTreeViewItem_Expanded(object sender, RoutedEventArgs e)
@@ -57,15 +73,44 @@ namespace SPMaintenance.Services
 
             if (originator != null)
             {
-                MessageBox.Show("Hallo. Ich wurde angestossen durch: " + originator.Header);
+                //MessageBox.Show("Hallo. Ich wurde angestossen durch: " + originator.Header);
 
+                SPMNodeInfo nodeInfo = originator.Tag as SPMNodeInfo;
+                if (nodeInfo != null)
+                {
+                    if (nodeInfo.NodeType == SPMNodeType.Lists && nodeInfo.Init == true)
+                    {
+                        // Wir brauchen den SiteNode. Der ist genau einen ueber dem Lists Knoten, also der Parent
+                        TreeViewItem siteNode = originator.Parent as TreeViewItem;
+                        if (siteNode != null)
+                        {
+                            SPMNodeInfo siteNodeInfo = siteNode.Tag as SPMNodeInfo;
+                            if (siteNodeInfo != null)
+                            {
+                                string siteUrl = siteNodeInfo.SiteUrl;
+                                List<SPMList> lists = this._repo.getLists(siteUrl);
+
+                                originator.Items.Clear();
+
+                                foreach (SPMList list in lists)
+                                {
+                                    originator.Items.Add(new TreeViewItem() {
+                                        Header = list.Title,
+                                        Tag = new SPMNodeInfo()
+                                        {
+                                            NodeType = SPMNodeType.List,
+                                            ID = list.ID,
+                                            SiteUrl = string.Empty,
+                                            Init = true
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    nodeInfo.Init = false;
+                }
             }
         }
-
-
-
-
-
-
     }
 }

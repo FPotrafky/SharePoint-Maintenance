@@ -9,9 +9,8 @@ namespace SPMaintenance.Utils
     class SPMNodeInfo
     {
         public SPMNodeType NodeType { get; set; }
-
         public Guid ID { get; set; }
-
         public bool Init { get; set; }
+        public string SiteUrl { get; set; }
     }
 }
