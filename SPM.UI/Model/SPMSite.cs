@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SPM.DataAccess
+namespace SPM.UI.Model
 {
-    public class Class1
+    class SPMSite
     {
+        public Guid ID { get; set; }
+        public string Title { get; set; }
     }
 }
