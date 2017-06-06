@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SPM.UI.Model
+namespace SPMaintenance.Model
 {
     class SPMSite
     {
         public Guid ID { get; set; }
         public string Title { get; set; }
+        public string MasterUrl { get; set; }
+        public string CustomMasterUrl { get; set; }
     }
 }

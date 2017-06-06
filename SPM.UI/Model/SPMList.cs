@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SPM.UI.Model
+namespace SPMaintenance.Model
 {
     class SPMList
     {

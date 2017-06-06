@@ -1,11 +1,11 @@
-﻿using SharePointMaintenance.Model;
+﻿using SPMaintenance.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharePointMaintenance.DataAccess
+namespace SPMaintenance.DataAccess
 {
     interface ISharePointRepository
     {
