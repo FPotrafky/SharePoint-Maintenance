@@ -6,7 +6,28 @@
         xmlns:local="clr-namespace:SharePointMaintenance"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid x:Name="Hello">
-       <TextBox Text="Hello" /> 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBox Width="400"></TextBox>
+            <Button Background="AliceBlue" Height="30" Width="60">Add site</Button>
+        </StackPanel>
+        <TreeView Grid.Row="1" Grid.Column="0" x:Name="treeView">
+            <TreeViewItem Header="Nummer 1" Expanded="TreeViewItem_Expanded">
+                <TreeViewItem Header="Nummer11"></TreeViewItem>
+                <TreeViewItem Header="Nummer12">
+                    <TreeViewItem Header="Nummer 121"></TreeViewItem>
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+        <Label Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray">Dies ist die Statuszeile</Label>
     </Grid>
 </Window>
