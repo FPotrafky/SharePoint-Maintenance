@@ -94,7 +94,8 @@ namespace SPMaintenance.Services
 
                                 foreach (SPMList list in lists)
                                 {
-                                    originator.Items.Add(new TreeViewItem() {
+                                    TreeViewItem treeViewItemList = new TreeViewItem()
+                                    {
                                         Header = list.Title,
                                         Tag = new SPMNodeInfo()
                                         {
@@ -103,7 +104,26 @@ namespace SPMaintenance.Services
                                             SiteUrl = string.Empty,
                                             Init = true
                                         }
-                                    });
+                                    };
+
+                                    TreeViewItem treeViewItemFields = new TreeViewItem()
+                                    {
+                                        Header = "Fields",
+                                        Tag = new SPMNodeInfo()
+                                        {
+                                            NodeType = SPMNodeType.ListFields,
+                                            Init = true
+                                        }
+                                    };
+
+                                    // Creating the dummy item under Fields
+                                    treeViewItemFields.Items.Add(new TreeViewItem() { Header = "dummy" });
+
+                                    // Adding the fields node to the list node
+                                    treeViewItemList.Items.Add(treeViewItemFields);
+
+                                    // Adding the list node to the lists node
+                                    originator.Items.Add(treeViewItemList);
                                 }
                             }
                         }
