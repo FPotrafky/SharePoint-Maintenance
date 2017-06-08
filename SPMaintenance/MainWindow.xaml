@@ -4,18 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPMaintenance"
-        xmlns:viewmodels="clr-namespace:SPMaintenance.ViewModels"
-        xmlns:views="clr-namespace:SPMaintenance.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:SiteViewModel}">
-            <views:SiteView DataContext="{Binding}"></views:SiteView>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:ListViewModel}">
-            <views:ListView DataContext="{Binding}"></views:ListView>
-        </DataTemplate>        
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -30,7 +20,33 @@
             <TextBox x:Name="txtSiteUrl" Width="400">http://work02</TextBox>
             <Button Background="AliceBlue" Height="30" Width="60" Click="AddSiteButton_Click">Add site</Button>
         </StackPanel>
-        <TreeView Grid.Row="1" Grid.Column="0" x:Name="treeView" SelectedItemChanged="treeView_SelectedItemChanged" />
+        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" SelectedItemChanged="treeView_SelectedItemChanged" ItemsSource="{Binding level1DataCol}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding level2DataCol}">
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding level3DataCol}">
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding level4DataCol}">
+                                    <HierarchicalDataTemplate.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding level5DataCol}">
+                                            <HierarchicalDataTemplate.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                                                </DataTemplate>
+                                            </HierarchicalDataTemplate.ItemTemplate>
+                                            <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                                        </HierarchicalDataTemplate>
+                                    </HierarchicalDataTemplate.ItemTemplate>
+                                    <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                                </HierarchicalDataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                            <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                        </HierarchicalDataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                    <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
         <Label Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray">Dies ist die Statuszeile</Label>
     </Grid>

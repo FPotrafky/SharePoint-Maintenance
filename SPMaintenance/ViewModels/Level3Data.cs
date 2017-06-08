@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SPMaintenance.ViewModels
 {
-    class ListViewModel
+    class Level3Data
     {
-        public Guid ID { get; set; }
         public string Title { get; set; }
     }
 }

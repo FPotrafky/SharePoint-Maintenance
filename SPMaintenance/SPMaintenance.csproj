@@ -69,8 +69,11 @@
     <Compile Include="Utils\Enums.cs" />
     <Compile Include="Model\SPMList.cs" />
     <Compile Include="Model\SPMSite.cs" />
-    <Compile Include="ViewModels\ListViewModel.cs" />
-    <Compile Include="ViewModels\SiteViewModel.cs" />
+    <Compile Include="ViewModels\AllData.cs" />
+    <Compile Include="ViewModels\Level1Data.cs" />
+    <Compile Include="ViewModels\Level2Data.cs" />
+    <Compile Include="ViewModels\Level3Data.cs" />
+    <Compile Include="ViewModels\DataBase.cs" />
     <Compile Include="Views\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
     </Compile>

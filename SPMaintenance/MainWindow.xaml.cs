@@ -30,9 +30,12 @@ namespace SPMaintenance
 
         private void AddSiteButton_Click(object sender, RoutedEventArgs e)
         {
-            string siteUrl = this.txtSiteUrl.Text;
-            TreeViewHelper treeViewHelper = new TreeViewHelper();
-            treeViewHelper.addSiteToTreeView(this.treeView, siteUrl);
+            //string siteUrl = this.txtSiteUrl.Text;
+            //TreeViewHelper treeViewHelper = new TreeViewHelper();
+            //treeViewHelper.addSiteToTreeView(this.treeView, siteUrl);
+
+            AllData allData = new AllData();
+            DataContext = allData;
         }
 
         private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -45,11 +48,11 @@ namespace SPMaintenance
                 {
                     if (nodeInfo.NodeType == SPMNodeType.Site)
                     {
-                        DataContext = new SiteViewModel();
+                        //DataContext = new SiteViewModel();
                     }
                     else if (nodeInfo.NodeType == SPMNodeType.List)
                     {
-                        DataContext = new ListViewModel();
+                        //DataContext = new ListViewModel();
                     }
                 }
             }
