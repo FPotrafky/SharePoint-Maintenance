@@ -23,9 +23,17 @@ namespace SPMaintenance
     /// </summary>
     public partial class MainWindow : Window
     {
+        AllData allData = null;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            allData = new AllData();
+            DataContext = allData;
+
+            allData.level1DataCol.Add(new Level1Data() { Title = "Sites" });
+            allData.level1DataCol[0].IsExpanded = true;
         }
 
         private void AddSiteButton_Click(object sender, RoutedEventArgs e)
@@ -33,9 +41,19 @@ namespace SPMaintenance
             //string siteUrl = this.txtSiteUrl.Text;
             //TreeViewHelper treeViewHelper = new TreeViewHelper();
             //treeViewHelper.addSiteToTreeView(this.treeView, siteUrl);
+            
+            Level2Data level2Data = new Level2Data() { Title = "Schalke04", DataLoaded = false, NodeType = SPMNodeType.Site };
 
-            AllData allData = new AllData();
-            DataContext = allData;
+            Level3Data level3Data = new Level3Data() { Title = "Lists", NodeType = SPMNodeType.Lists };
+            level3Data.level4DataCol.Add(new Level4Data() { Title = "dummy" });
+            level2Data.level3DataCol.Add(level3Data);
+
+            level3Data = new Level3Data() { Title = "Properties", NodeType = SPMNodeType.SiteProperties };
+            level3Data.level4DataCol.Add(new Level4Data() { Title = "dummy" });
+            level2Data.level3DataCol.Add(level3Data);
+
+            allData.level1DataCol[0].level2DataCol.Add(level2Data);
+            
         }
 
         private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -56,6 +74,11 @@ namespace SPMaintenance
                     }
                 }
             }
+        }
+
+        private void treeView_Expanded(object sender, RoutedEventArgs e)
+        {
+            string sss = "";
         }
     }
 }

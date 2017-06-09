@@ -16,8 +16,5 @@ namespace SPMaintenance.ViewModels
         {
             this.level2DataCol = new ObservableCollection<Level2Data>();
         }
-
-
-
     }
 }

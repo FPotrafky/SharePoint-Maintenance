@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace SPMaintenance.ViewModels
 {
-    class Level3Data : LevelDataBase
+    class Level6Data : LevelDataBase
     {
-        public List<Level4Data> level4DataCol { get; set; }
-
-        public Level3Data()
+        public Level6Data()
         {
-            this.level4DataCol = new List<Level4Data>();
+
         }
     }
 }

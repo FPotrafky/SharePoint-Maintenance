@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:SPMaintenance"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded}">
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -20,7 +26,7 @@
             <TextBox x:Name="txtSiteUrl" Width="400">http://work02</TextBox>
             <Button Background="AliceBlue" Height="30" Width="60" Click="AddSiteButton_Click">Add site</Button>
         </StackPanel>
-        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" SelectedItemChanged="treeView_SelectedItemChanged" ItemsSource="{Binding level1DataCol}">
+        <TreeView TreeViewItem.Expanded="treeView_Expanded" x:Name="treeView" Grid.Row="1" Grid.Column="0"  SelectedItemChanged="treeView_SelectedItemChanged" ItemsSource="{Binding level1DataCol}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding level2DataCol}">
                     <HierarchicalDataTemplate.ItemTemplate>

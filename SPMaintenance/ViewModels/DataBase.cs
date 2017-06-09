@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPMaintenance.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -18,6 +19,26 @@ namespace SPMaintenance.ViewModels
                 title = value;
                 RaisePropertyChanged("Title");
             }
+        }
+
+        private bool isExpanded;
+
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set
+            {
+                isExpanded = value;
+                RaisePropertyChanged("IsExpanded");
+            }
+        }
+        public bool DataLoaded { get; set; }
+        public SPMNodeType NodeType { get; set; }
+
+        public LevelDataBase()
+        {
+            this.DataLoaded = false;
+            this.NodeType = SPMNodeType.None;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

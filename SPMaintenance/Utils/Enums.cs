@@ -8,6 +8,7 @@ namespace SPMaintenance.Utils
 {
     public enum SPMNodeType
     {
+        None,
         Site,
         SiteProperties,
         SiteProperty,
