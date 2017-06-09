@@ -130,6 +130,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assemblies\Microsoft.SharePoint.Client.dll" />
+    <None Include="Assemblies\Microsoft.SharePoint.Client.Runtime.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
