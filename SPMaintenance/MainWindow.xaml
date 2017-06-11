@@ -8,8 +8,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <Style TargetType="{x:Type TreeViewItem}">
-            <Setter Property="IsExpanded" Value="{Binding IsExpanded}">
-            </Setter>
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded}"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
@@ -23,7 +22,7 @@
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBox x:Name="txtSiteUrl" Width="400">http://work02</TextBox>
+            <TextBox x:Name="txtSiteUrl" Width="400" Text="{Binding SiteToAddUrl}"></TextBox>
             <Button Background="AliceBlue" Height="30" Width="60" Command="{Binding AddSiteCommand}">Add site</Button>
         </StackPanel>
         <TreeView TreeViewItem.Expanded="treeView_Expanded" x:Name="treeView" Grid.Row="1" Grid.Column="0"  SelectedItemChanged="treeView_SelectedItemChanged" ItemsSource="{Binding level1DataCol}">
@@ -54,6 +53,13 @@
             </TreeView.ItemTemplate>
         </TreeView>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
-        <Label Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray">Dies ist die Statuszeile</Label>
+        <Label 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2" 
+            Background="LightGray" 
+            Content="{Binding Message}"
+            Foreground="{Binding MessageColor}">
+            
+        </Label>
     </Grid>
 </Window>

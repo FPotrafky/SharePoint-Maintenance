@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\TreeViewHelper.cs" />
     <Compile Include="Utils\CustomCommand.cs" />
     <Compile Include="Utils\SPMNodeInfo.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Model\SPMList.cs" />
     <Compile Include="Model\SPMSite.cs" />
     <Compile Include="ViewModels\AllData.cs" />
+    <Compile Include="ViewModels\AllDataBase.cs" />
     <Compile Include="ViewModels\Level1Data.cs" />
     <Compile Include="ViewModels\Level2Data.cs" />
     <Compile Include="ViewModels\Level6Data.cs" />
@@ -138,5 +140,6 @@
     <None Include="Assemblies\Microsoft.SharePoint.Client.dll" />
     <None Include="Assemblies\Microsoft.SharePoint.Client.Runtime.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

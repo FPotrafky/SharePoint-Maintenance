@@ -13,15 +13,24 @@ namespace SPMaintenance.DataAccess
     {
         public SPMSite getSite(string siteUrl)
         {
-            ClientContext ctx = new ClientContext(siteUrl);
-            ctx.Credentials = new NetworkCredential("administrator", "test", "PO7");
+            Web web = null;
+            try
+            {
+                ClientContext ctx = new ClientContext(siteUrl);
+                ctx.Credentials = new NetworkCredential("administrator", "testh", "PO7");
+                web = ctx.Web;
+                ctx.Load(web);
 
-            Web web = ctx.Web;
+                ctx.ExecuteQuery();
+            }
+            catch(Exception ex)
+            {
+                // TODO: Hier wegschreiben des Fehlers in Textdatei
 
-            ctx.Load(web);
-
-            ctx.ExecuteQuery();
-
+                // Dann weitergeben des Fehlers. Aber aufrufende Stelle gibt eine für den Benutzer verständliche Info raus.
+                throw ex;
+            }
+   
             SPMSite spmsite = new SPMSite();
             spmsite.ID = web.Id;
             spmsite.Title = web.Title;
