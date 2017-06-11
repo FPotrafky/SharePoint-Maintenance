@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBox x:Name="txtSiteUrl" Width="400">http://work02</TextBox>
-            <Button Background="AliceBlue" Height="30" Width="60" Click="AddSiteButton_Click">Add site</Button>
+            <Button Background="AliceBlue" Height="30" Width="60" Command="{Binding AddSiteCommand}">Add site</Button>
         </StackPanel>
         <TreeView TreeViewItem.Expanded="treeView_Expanded" x:Name="treeView" Grid.Row="1" Grid.Column="0"  SelectedItemChanged="treeView_SelectedItemChanged" ItemsSource="{Binding level1DataCol}">
             <TreeView.ItemTemplate>

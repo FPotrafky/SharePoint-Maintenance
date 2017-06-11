@@ -35,6 +35,8 @@ namespace SPMaintenance.ViewModels
         public bool DataLoaded { get; set; }
         public SPMNodeType NodeType { get; set; }
 
+        public object SPMData { get; set; }
+
         public LevelDataBase()
         {
             this.DataLoaded = false;

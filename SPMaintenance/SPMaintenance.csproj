@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\TreeViewHelper.cs" />
+    <Compile Include="Utils\CustomCommand.cs" />
     <Compile Include="Utils\SPMNodeInfo.cs" />
     <Compile Include="Utils\Enums.cs" />
     <Compile Include="Model\SPMList.cs" />
