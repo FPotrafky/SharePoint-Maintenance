@@ -17,7 +17,7 @@ namespace SPMaintenance.DataAccess
             try
             {
                 ClientContext ctx = new ClientContext(siteUrl);
-                ctx.Credentials = new NetworkCredential("administrator", "testh", "PO7");
+                ctx.Credentials = new NetworkCredential("administrator", "test", "PO7");
                 web = ctx.Web;
                 ctx.Load(web);
 

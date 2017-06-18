@@ -41,6 +41,8 @@ namespace SPMaintenance.ViewModels
             {
                 SPMSite siteToAdd = dataService.getSite(SiteToAddUrl);
                 Level2Data level2Data = new Level2Data() { Title = siteToAdd.Title, DataLoaded = true, NodeType = SPMNodeType.Site };
+                // Adds the SPMSite Object to the level2Data object
+                level2Data.SPMData = siteToAdd;
                 level1DataCol[0].level2DataCol.Add(level2Data);
             }
             catch(Exception ex)
