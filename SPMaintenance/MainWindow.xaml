@@ -4,12 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPMaintenance"
+        xmlns:models="clr-namespace:SPMaintenance.Model"
+        xmlns:views="clr-namespace:SPMaintenance.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <Style TargetType="{x:Type TreeViewItem}">
             <Setter Property="IsExpanded" Value="{Binding IsExpanded}"></Setter>
         </Style>
+        <DataTemplate DataType="{x:Type models:SPMSite}">
+            <views:SiteView></views:SiteView>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,14 +57,13 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
+        <ContentControl x:Name="myContentControl" Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
         <Label 
             Grid.Row="2" 
             Grid.ColumnSpan="2" 
             Background="LightGray" 
             Content="{Binding Message}"
             Foreground="{Binding MessageColor}">
-            
         </Label>
     </Grid>
 </Window>

@@ -34,6 +34,8 @@ namespace SPMaintenance.DataAccess
             SPMSite spmsite = new SPMSite();
             spmsite.ID = web.Id;
             spmsite.Title = web.Title;
+            spmsite.MasterUrl = web.MasterUrl;
+            spmsite.CustomMasterUrl = web.CustomMasterUrl;
 
             return spmsite;
         }

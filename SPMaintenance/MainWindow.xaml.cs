@@ -40,22 +40,31 @@ namespace SPMaintenance
 
         private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            TreeViewItem selectedItem = e.NewValue as TreeViewItem;
-            if (selectedItem != null)
+            Level2Data selectedItem = e.NewValue as Level2Data;
+
+            if (selectedItem != null && selectedItem.Title == "Home")
             {
-                SPMNodeInfo nodeInfo = selectedItem.Tag as SPMNodeInfo;
-                if (nodeInfo != null)
-                {
-                    if (nodeInfo.NodeType == SPMNodeType.Site)
-                    {
-                        //DataContext = new SiteViewModel();
-                    }
-                    else if (nodeInfo.NodeType == SPMNodeType.List)
-                    {
-                        //DataContext = new ListViewModel();
-                    }
-                }
+                myContentControl.DataContext = selectedItem.SPMData;
             }
+            else
+            {
+
+            }
+            //if (selectedItem != null)
+            //{
+            //    SPMNodeInfo nodeInfo = selectedItem.Tag as SPMNodeInfo;
+            //    if (nodeInfo != null)
+            //    {
+            //        if (nodeInfo.NodeType == SPMNodeType.Site)
+            //        {
+            //            //DataContext = new SiteViewModel();
+            //        }
+            //        else if (nodeInfo.NodeType == SPMNodeType.List)
+            //        {
+            //            //DataContext = new ListViewModel();
+            //        }
+            //    }
+            //}
         }
 
         private void treeView_Expanded(object sender, RoutedEventArgs e)
