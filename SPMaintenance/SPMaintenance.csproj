@@ -79,7 +79,7 @@
     <Compile Include="ViewModels\Level5Data.cs" />
     <Compile Include="ViewModels\Level4Data.cs" />
     <Compile Include="ViewModels\Level3Data.cs" />
-    <Compile Include="ViewModels\DataBase.cs" />
+    <Compile Include="ViewModels\LevelDataBase.cs" />
     <Compile Include="Views\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
     </Compile>

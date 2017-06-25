@@ -57,7 +57,7 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <ContentControl x:Name="myContentControl" Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
+        <ContentControl x:Name="DetailsPage" Grid.Column="1" Grid.Row="1" Content="{Binding}"></ContentControl>
         <Label 
             Grid.Row="2" 
             Grid.ColumnSpan="2" 

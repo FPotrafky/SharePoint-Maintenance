@@ -35,21 +35,22 @@ namespace SPMaintenance
 
             allData.level1DataCol.Add(new Level1Data() { Title = "Sites" });
             allData.level1DataCol[0].IsExpanded = true;
+
+            allData.SiteToAddUrl = "http://work02";
+
+            DetailsPage.DataContext = null;
         }
 
 
         private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            Level2Data selectedItem = e.NewValue as Level2Data;
+            LevelDataBase selectedNode = e.NewValue as LevelDataBase;
 
-            if (selectedItem != null && selectedItem.Title == "Home")
+            if (selectedNode != null)
             {
-                myContentControl.DataContext = selectedItem.SPMData;
+                DetailsPage.DataContext = selectedNode.SPMData;
             }
-            else
-            {
 
-            }
             //if (selectedItem != null)
             //{
             //    SPMNodeInfo nodeInfo = selectedItem.Tag as SPMNodeInfo;
