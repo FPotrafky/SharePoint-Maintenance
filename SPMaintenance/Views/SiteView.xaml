@@ -9,8 +9,8 @@
     <Grid Background="Red">
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,40,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Width="280"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,68,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="280"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,96,0,0" TextWrapping="Wrap" Text="{Binding MasterUrl}" VerticalAlignment="Top" Width="280"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,124,0,0" TextWrapping="Wrap" Text="{Binding CustomMasterUrl}" VerticalAlignment="Top" Width="280"/>
-
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,96,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Width="280"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,124,0,0" TextWrapping="Wrap" Text="{Binding MasterUrl}" VerticalAlignment="Top" Width="280"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,152,0,0" TextWrapping="Wrap" Text="{Binding CustomMasterUrl}" VerticalAlignment="Top" Width="280"/>
     </Grid>
 </UserControl>
