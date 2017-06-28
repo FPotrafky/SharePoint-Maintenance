@@ -10,9 +10,14 @@ namespace SPMaintenance.ViewModels
 {
     class LevelDataBase : INotifyPropertyChanged
     {
+        public LevelDataBase Parent { get; set; }
+
+
+
         private string title;
         public string Title
         {
+
             get { return title; }
             set
             {

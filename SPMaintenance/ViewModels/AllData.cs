@@ -13,7 +13,7 @@ namespace SPMaintenance.ViewModels
 {
     class AllData : AllDataBase
     {
-        private DataService dataService;
+        public DataService dataService;
         
         public ObservableCollection<Level1Data> level1DataCol { get; set; }
 
@@ -43,7 +43,25 @@ namespace SPMaintenance.ViewModels
                 Level2Data level2Data = new Level2Data() { Title = siteToAdd.Title, DataLoaded = true, NodeType = SPMNodeType.Site };
                 // Adds the SPMSite Object to the level2Data object
                 level2Data.SPMData = siteToAdd;
+
+                // Wir fügen dem Site-Knoten jetzt automatisch einen Properties- und einen Lists Knoten hinzu
+                // Erst den Properties-Knoten
+                Level3Data level3Data = new Level3Data() { Title = "Properties", DataLoaded = false, NodeType = SPMNodeType.SiteProperties, Parent = level2Data };
+                level2Data.level3DataCol.Add(level3Data);
+
+                Level4Data level4Data = new Level4Data() { Title = "Dummy", DataLoaded = false, NodeType = SPMNodeType.None, Parent = level3Data };
+                level3Data.level4DataCol.Add(level4Data);
+
+                // Dann den Lists-Knoten
+                level3Data = new Level3Data() { Title = "Lists", DataLoaded = false, NodeType = SPMNodeType.Lists, Parent = level2Data };
+                level2Data.level3DataCol.Add(level3Data);
+
+                level4Data = new Level4Data() { Title = "Dummy", DataLoaded = false, NodeType = SPMNodeType.None, Parent = level3Data };
+                level3Data.level4DataCol.Add(level4Data);
+
+                // Wir fügen dem Level1, der ja immer der fixe Sites-Knoten ist, einen Site-Knoten hinzu
                 level1DataCol[0].level2DataCol.Add(level2Data);
+
             }
             catch(Exception ex)
             {
